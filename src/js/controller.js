@@ -11,3 +11,5 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
+
+console.log('TEST'); //test to see if the parcel setup is succesfull

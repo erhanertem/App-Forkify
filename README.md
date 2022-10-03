@@ -14,10 +14,14 @@
 
 ![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-#### Installed NPM package:
+#### Installed NPM packages and utilzied APIs:
 
-| Package command | Package link | Description |
-| --------------- | ------------ | ----------- |
-|                 |              |             |
+| Package command         | Package link                                 | Description                                            |
+| ----------------------- | -------------------------------------------- | ------------------------------------------------------ |
+| npm i --save-dev parcel | https://parceljs.org/getting-started/webapp/ | Parcel is a zero configuration build tool for the web. |
+
+| API Name       | API Documentation Link               |     |
+| -------------- | ------------------------------------ | --- |
+| Forkify API v2 | https://forkify-api.herokuapp.com/v2 |     |
 
 &emsp;
