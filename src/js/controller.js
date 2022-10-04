@@ -1,5 +1,8 @@
 'use strict';
 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 //->Establish link between icons and parcel
 import icons from 'url:../img/icons.svg';
 //NOTE: Parcel 2 requires url: for static items such as links to img and videos, etc.
@@ -19,17 +22,22 @@ const timeout = function (s) {
 ///////////////////////////////////////
 const renderSpinner = function (parentEl) {
   const markup = `
-  <div class="spinner">
-    <svg>
-    <use href="src/img/icons.svg#icon-loader"></use>
-    </svg>
-  </div>
+    <div class="spinner">
+      <svg>
+      <use href="${icons}#icon-loader"></use>
+      </svg>
+    </div>
   `;
+  //Clear the entire container element
+  parentEl.innerHTML = '';
+  //Insert the HTML markup
   parentEl.insertAdjacentHTML('afterbegin', markup);
 };
 
 const showRecipe = async function () {
   try {
+    //-->Start loading spinner inside the recipeContainer
+    renderSpinner(recipeContainer);
     //-->Fetching recipe data
     const response = await fetch(
       'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'

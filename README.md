@@ -16,12 +16,14 @@
 
 #### Installed NPM packages and utilzied APIs:
 
-| Package command         | Package link                                 | Description                                            |
-| ----------------------- | -------------------------------------------- | ------------------------------------------------------ |
-| npm i --save-dev parcel | https://parceljs.org/getting-started/webapp/ | Parcel is a zero configuration build tool for the web. |
+| Package command           | Package link                                       | Description                                            |
+| ------------------------- | -------------------------------------------------- | ------------------------------------------------------ |
+| npm i --save-dev parcel   | https://parceljs.org/getting-started/webapp/       | Parcel is a zero configuration build tool for the web. |
+| npm i regenerator-runtime | https://www.npmjs.com/package/regenerator-runtime/ | Polyfill ES6 features - Async functions                |
+| npm i core-js             | https://www.npmjs.com/package/core-js              | Includes polyfills for ECMAScript up to 2023           |
 
-| API Name       | API Documentation Link               |     |
-| -------------- | ------------------------------------ | --- |
-| Forkify API v2 | https://forkify-api.herokuapp.com/v2 |     |
+| API Name       | API Documentation Link               |
+| -------------- | ------------------------------------ |
+| Forkify API v2 | https://forkify-api.herokuapp.com/v2 |
 
 &emsp;
