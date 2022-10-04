@@ -8,6 +8,10 @@
 
 &emsp;
 
+- Establish MVC Architecture
+
+&emsp;
+
 #### Link to Project &rarr; [Forkify-App](https://forkify-app-erhan-ertem.netlify.app)
 
 ---

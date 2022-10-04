@@ -38,7 +38,7 @@ const showRecipe = async function () {
   try {
     //-->Strip out the id from the clicked result with #href for EVENTHANDLER#1
     const id = window.location.hash.slice(1); //Gets rid of the # and attains the remainder id value
-    console.log(id);
+    // console.log(id);
     if (!id) return; //GUARD clause if page initiates with no recipe id
 
     //-->Start loading spinner inside the recipeContainer
