@@ -1,7 +1,7 @@
 'use strict';
 
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
+import 'regenerator-runtime/runtime.js';
 
 //->Establish link between icons and parcel
 import icons from 'url:../img/icons.svg';
@@ -36,11 +36,16 @@ const renderSpinner = function (parentEl) {
 
 const showRecipe = async function () {
   try {
+    //-->Strip out the id from the clicked result with #href for EVENTHANDLER#1
+    const id = window.location.hash.slice(1); //Gets rid of the # and attains the remainder id value
+    console.log(id);
+    if (!id) return; //GUARD clause if page initiates with no recipe id
+
     //-->Start loading spinner inside the recipeContainer
     renderSpinner(recipeContainer);
     //-->Fetching recipe data
     const response = await fetch(
-      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
     const data = await response.json();
     //->Serverside fetch err check
@@ -184,4 +189,10 @@ const showRecipe = async function () {
   }
 };
 
-showRecipe();
+//EVENTHANDLER#1: UI LEFT WING - RECIPE LIST SECTION
+// //->Scenario #1: In the event of click on the list of recipe with a different hashid that tirgger change on url hash address change of the browser(window)
+// window.addEventListener('hashchange', showRecipe);
+// //->Scenario #2: In the event of copy and paste the same url to another browser(window) tab
+// window.addEventListener('load', showRecipe);
+//->Condensed version of the above two event listeners
+['hashchange', 'load'].forEach(e => window.addEventListener(e, showRecipe));
