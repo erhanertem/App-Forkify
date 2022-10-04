@@ -17,6 +17,16 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
+const renderSpinner = function (parentEl) {
+  const markup = `
+  <div class="spinner">
+    <svg>
+    <use href="src/img/icons.svg#icon-loader"></use>
+    </svg>
+  </div>
+  `;
+  parentEl.insertAdjacentHTML('afterbegin', markup);
+};
 
 const showRecipe = async function () {
   try {
