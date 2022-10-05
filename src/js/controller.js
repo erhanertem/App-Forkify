@@ -1,4 +1,4 @@
-// 'use strict';
+// 'use strict'; //NOTE: ES6 modules have implict strict mode, and Babel dicates strict mode by default as well.
 //->MVC module imports
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';

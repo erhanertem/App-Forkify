@@ -97,26 +97,7 @@ class RecipeView {
           <ul class="recipe__ingredient-list">
 
           ${this.#data.ingredients
-            .map(ingredient => {
-              return ` 
-            <li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="${icons}#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">${
-                ingredient.quantity
-                  ? new Fraction(ingredient.quantity.toFixed(1))
-                  : ''
-              }</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">${
-                  ingredient.unit ? ingredient.unit : ''
-                }</span>
-                ${ingredient.description ? ingredient.description : ''}
-              </div>
-            </li>
-            `;
-            })
+            .map(this.#generateMarkupIngredient)
             .join('')}       
           </ul>
         </div>
@@ -143,6 +124,26 @@ class RecipeView {
         </div>
   `;
   }
-}
 
+  #generateMarkupIngredient(ingredient) {
+    return ` 
+         <li class="recipe__ingredient">
+              <svg class="recipe__icon">
+                <use href="${icons}#icon-check"></use>
+              </svg>
+              <div class="recipe__quantity">${
+                ingredient.quantity
+                  ? new Fraction(ingredient.quantity.toFixed(1)).toString()
+                  : ''
+              }</div>
+              <div class="recipe__description">
+                <span class="recipe__unit">${
+                  ingredient.unit ? ingredient.unit : ''
+                }</span>
+                ${ingredient.description ? ingredient.description : ''}
+              </div>
+         </li>
+         `;
+  }
+}
 export default new RecipeView(); //Note: we havent passed in data with the object so we do not need a consgtructor function.
