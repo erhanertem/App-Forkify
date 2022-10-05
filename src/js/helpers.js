@@ -1,7 +1,16 @@
-// import 'regenerator-runtime/runtime.js';
+import { TIMEOUT_SEC } from './config.js';
+
+const timeout = function (s) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error(`Request took too long! Timeout after ${s} second`));
+    }, s * 1000);
+  });
+};
+
 export const getJSON = async function (url) {
   try {
-    const response = await fetch(url);
+    const response = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]); //race two promises either url fetches in 10 seconds or timeout throws a reject promise
     const data = await response.json();
 
     //->Serverside fetch err check

@@ -4,21 +4,7 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
-// import 'regenerator-runtime/runtime.js';
-//->Establish link to external library
-// import Fraction from 'fractional';
-// console.log(Fraction); //Fraction includes franction function inside Fraction.
-import { Fraction } from 'fractional'; // We take out Fraction inside fraction via destructuring in-place.
-
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-
-// https://forkify-api.herokuapp.com/v2
+import 'regenerator-runtime/runtime.js';
 
 ///////////////////////////////////////
 
@@ -42,7 +28,7 @@ const controlRecipes = async function () {
     // const recipeView = new RecipeView(model.state.recipe);
     //Note: we could have recipeView.js export the object and we call create an instance of it here but we have chosen to create an instance of the object in recipeView.js, REcipeview object remained private and we just call it from here with its data input from model.js
   } catch (err) {
-    alert(err);
+    console.log(`${err}🎈`);
   }
 };
 

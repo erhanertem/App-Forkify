@@ -1,5 +1,10 @@
 //->Establish link between icons and parcel
 import icons from 'url:../../img/icons.svg'; //NOTE: Parcel 2 requires url: for static items such as links to img and videos, etc.
+//->Establish link to external library
+// import Fraction from 'fractional';
+// console.log(Fraction); //Fraction includes franction function inside Fraction.
+import { Fraction } from 'fractional'; // We take out Fraction inside fraction via destructuring in-place.
+
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;

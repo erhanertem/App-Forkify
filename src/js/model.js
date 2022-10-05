@@ -1,4 +1,3 @@
-// import 'regenerator-runtime/runtime.js';
 import { API_URL } from './config.js';
 import { getJSON } from './helpers.js';
 
