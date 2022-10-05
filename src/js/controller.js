@@ -4,7 +4,7 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
-import 'regenerator-runtime/runtime.js';
+// import 'regenerator-runtime/runtime.js';
 //->Establish link to external library
 // import Fraction from 'fractional';
 // console.log(Fraction); //Fraction includes franction function inside Fraction.
