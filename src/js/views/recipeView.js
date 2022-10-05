@@ -104,7 +104,9 @@ class RecipeView {
                 <use href="${icons}#icon-check"></use>
               </svg>
               <div class="recipe__quantity">${
-                ingredient.quantity ? ingredient.quantity : ''
+                ingredient.quantity
+                  ? new Fraction(ingredient.quantity.toFixed(1))
+                  : ''
               }</div>
               <div class="recipe__description">
                 <span class="recipe__unit">${
@@ -115,18 +117,7 @@ class RecipeView {
             </li>
             `;
             })
-            .join('')}
-
-            <li class="recipe__ingredient">
-              <svg class="recipe__icon">
-                <use href="${icons}#icon-check"></use>
-              </svg>
-              <div class="recipe__quantity">0.5</div>
-              <div class="recipe__description">
-                <span class="recipe__unit">cup</span>
-                ricotta cheese
-              </div>
-            </li>
+            .join('')}       
           </ul>
         </div>
 

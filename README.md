@@ -25,6 +25,7 @@
 | npm i --save-dev parcel   | https://parceljs.org/getting-started/webapp/       | Parcel is a zero configuration build tool for the web. |
 | npm i regenerator-runtime | https://www.npmjs.com/package/regenerator-runtime/ | Polyfill ES6 features - Async functions                |
 | npm i core-js             | https://www.npmjs.com/package/core-js              | Includes polyfills for ECMAScript up to 2023           |
+| npm i fractional          | https://www.npmjs.com/package/fractional           | Fraction arithmetic library for JS                     |
 
 | API Name       | API Documentation Link               |
 | -------------- | ------------------------------------ |
