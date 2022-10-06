@@ -29,7 +29,8 @@ const controlRecipes = async function () {
     // const recipeView = new RecipeView(model.state.recipe);
     //Note: we could have recipeView.js export the object and we call create an instance of it here but we have chosen to create an instance of the object in recipeView.js, REcipeview object remained private and we just call it from here with its data input from model.js
   } catch (err) {
-    console.log(`${err}🎈`);
+    // console.error(`${err}🎈`);
+    recipeView.renderError();
   }
 };
 

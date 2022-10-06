@@ -8,6 +8,8 @@ import { Fraction } from 'fractional'; // We take out Fraction inside fraction v
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #successMessage = ''; //add a custom success message relevant to UI
+  #errorMessage = 'We could not find that recipe. Please try another one!'; //add a custom default error message relevant to UI
 
   render(data) {
     //Assign data input to object field as private
@@ -45,6 +47,40 @@ class RecipeView {
       </svg>
     </div>
   `;
+    //Clear the entire container element
+    this.#clear();
+    //Insert the HTML markup
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderError(message = this.#errorMessage) {
+    const markup = `
+          <div class="error">
+            <div>
+              <svg>
+                <use href="${icons}.svg#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div> 
+    `;
+    //Clear the entire container element
+    this.#clear();
+    //Insert the HTML markup
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderMessage(message = this.#successMessage) {
+    const markup = `
+          <div class="error">
+            <div>
+              <svg>
+                <use href="${icons}.svg#icon-smile"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div> 
+    `;
     //Clear the entire container element
     this.#clear();
     //Insert the HTML markup
