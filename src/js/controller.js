@@ -7,7 +7,9 @@ import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web stan
 // import { async } from 'regenerator-runtime';
 // import 'regenerator-runtime/runtime.js';
 
-///////////////////////////////////////
+//////////////////////////////////////////
+// https://forkify-api.herokuapp.com/v2
+//////////////////////////////////////////
 
 const controlRecipes = async function () {
   try {
@@ -33,6 +35,17 @@ const controlRecipes = async function () {
     recipeView.renderError();
   }
 };
+
+const controlSearchResults = async function () {
+  try {
+    await model.loadSearchResults('pizza'); //wait for promise to be returned
+    console.log(model.state.search.results);
+  } catch {
+    console.error(`${err}🎈`);
+  }
+};
+
+controlSearchResults();
 
 const init = function () {
   //-->Eventhandler for hashchange and page reload events
