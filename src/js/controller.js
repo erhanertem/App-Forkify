@@ -4,7 +4,8 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
-import 'regenerator-runtime/runtime.js';
+// import { async } from 'regenerator-runtime';
+// import 'regenerator-runtime/runtime.js';
 
 ///////////////////////////////////////
 
@@ -32,10 +33,8 @@ const controlRecipes = async function () {
   }
 };
 
-//EVENTHANDLER#1: UI LEFT WING - RECIPE LIST SECTION
-// //->Scenario #1: In the event of click on the list of recipe with a different hashid that tirgger change on url hash address change of the browser(window)
-// window.addEventListener('hashchange', controlRecipes);
-// //->Scenario #2: In the event of copy and paste the same url to another browser(window) tab
-// window.addEventListener('load', controlRecipes);
-//->Condensed version of the above two event listeners
-['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipes));
+const init = function () {
+  //-->Eventhandler for hashchange and page reload events
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();

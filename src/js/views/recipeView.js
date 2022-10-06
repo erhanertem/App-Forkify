@@ -25,6 +25,17 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
   }
 
+  addHandlerRender(handler) {
+    //-->Eventhandler for hashchange and page reload events
+    // //->Scenario #1: In the event of click on the list of recipe with a different hashid that tirgger change on url hash address change of the browser(window)
+    // window.addEventListener('hashchange', controlRecipes);
+    // //->Scenario #2: In the event of copy and paste the same url to another browser(window) tab
+    // window.addEventListener('load', controlRecipes);
+    //->Condensed version of the above two event listeners
+    ['hashchange', 'load'].forEach(e => window.addEventListener(e, handler));
+    //NOTE: We rearrange the code under recipeViewas its UI related and we can still call it from controller as it has link to rcipeView and adobt handler variable so that we can instruct to which callback function it would take account of.
+  }
+
   renderSpinner() {
     //Prep the HTML markup for the spinner
     const markup = `
