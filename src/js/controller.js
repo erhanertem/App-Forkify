@@ -2,6 +2,8 @@
 //->MVC module imports
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
+
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
 // import { async } from 'regenerator-runtime';
@@ -38,17 +40,20 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
   try {
-    await model.loadSearchResults('pizza'); //wait for promise to be returned
+    const query = searchView.getQuery();
+    if (!query) return; //GUARD clause if no query typed
+
+    await model.loadSearchResults(query); //wait for promise to be returned
     console.log(model.state.search.results);
   } catch {
     console.error(`${err}🎈`);
   }
 };
 
-controlSearchResults();
-
 const init = function () {
   //-->Eventhandler for hashchange and page reload events
   recipeView.addHandlerRender(controlRecipes);
+  //-->Eventhandler for search keyword submit event
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();
