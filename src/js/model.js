@@ -4,7 +4,7 @@ import { getJSON } from './helpers.js';
 export const state = {
   recipe: {},
   search: {
-    query: '',
+    query: [],
     results: [],
   },
 };
@@ -12,7 +12,7 @@ export const state = {
 export const loadRecipe = async function (id) {
   try {
     //-->Load recipe data
-    const data = await getJSON(`${API_URL}/${id}`); //we await data promise
+    const data = await getJSON(`${API_URL}${id}`); //we await data promise
 
     //-->Lets create our own version of the recipe to be used in the app under the *STATE* object
     const { recipe } = data.data; // let recipe = data.data.recipe;
@@ -35,9 +35,12 @@ export const loadRecipe = async function (id) {
 
 export const loadSearchResults = async function (queryString) {
   try {
+    state.search.query.push(queryString); //BUG: (Pending) store the query IF GETJSON TESTS SUCCESSFULL!!!!
+
     //Note: Per instructions as outlined @ forkify-api.herokuapp.com for search operations
     const data = await getJSON(`${API_URL}?search=${queryString}`);
     // console.log(data);
+    console.log(state.search.query);
 
     state.search.results = data.data.recipes.map(recipe => {
       return {

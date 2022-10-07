@@ -16,7 +16,7 @@ class SearchView {
 
   addHandlerSearch(handler) {
     this._parentElement.addEventListener('submit', function (event) {
-      event.preventDefault(); //prevent default page reloading with 'submit'
+      event.preventDefault(); //prevent default page reloading with 'submit' form
       handler();
     });
     //IMPORTANT! we use submit here so that whether we hit enter or click btn the data will be processed. Click only respinds to btn not enter!!!
