@@ -3,11 +3,12 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
+import resultsView from './views/resultsView.js';
 
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
-// import { async } from 'regenerator-runtime';
-// import 'regenerator-runtime/runtime.js';
+// import { async } from 'regenerator-runtime'; //Imports only what is relavant {async} library in this case
+// import 'regenerator-runtime/runtime.js'; //Imports the whole library
 
 //////////////////////////////////////////
 // https://forkify-api.herokuapp.com/v2
@@ -44,20 +45,26 @@ const controlSearchResults = async function () {
     const query = searchView.getQuery();
     if (!query) return; //GUARD clause if no query typed
 
+    //-->Start loading spinner inside the recipeContainer
+    resultsView.renderSpinner();
+
     //-->Load search results
     await model.loadSearchResults(query); //wait for promise to be returned
 
     //-->Render results
     console.log(model.state.search.results);
-  } catch {
+  } catch (err) {
     console.error(`${err}🎈`);
   }
 };
 
+//INITIALIZE APP
 const init = function () {
   //-->Eventhandler for hashchange and page reload events
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerRender(controlRecipes);
   //-->Eventhandler for search keyword submit event
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   searchView.addHandlerSearch(controlSearchResults);
 };
 init();

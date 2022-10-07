@@ -54,5 +54,4 @@ export const loadSearchResults = async function (queryString) {
     throw err; //pass onto controller catch err
   }
 };
-
-loadSearchResults('pizza');
+// loadSearchResults('pizza');
