@@ -1,11 +1,9 @@
 import View from './View.js';
 
-//->Establish link between icons and parcel
-import icons from 'url:../../img/icons.svg'; //NOTE: Parcel 2 requires url: for static items such as links to img and videos, etc.
-
 class ResultsView extends View {
   _parentElement = document.querySelector('.results');
-
+  _successMessage = ''; //add a custom success message relevant to UI
+  _errorMessage = 'No recipe matching your query. Please try again.'; //add a custom default error message relevant to UI
   _generateMarkup() {
     // console.log('_data', this._data);
     return this._data.map(this._generateMarkupPreview).join('');

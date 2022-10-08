@@ -6,6 +6,8 @@ export default class View {
   _data;
 
   render(data) {
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError(); //GUARD clause if render() receives no data/null/undefined || an empty array
     //Assign data input to object field as private
     this._data = data;
     //Note: we take the data out as a private field then which generateMarkup could refer to in his HTML markup
