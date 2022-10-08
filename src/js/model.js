@@ -6,6 +6,8 @@ export const state = {
   search: {
     query: [],
     results: [],
+    resultsPerPage: RESULTS_PER_PAGE,
+    paginationPageState: 1, //by default
   },
 };
 
@@ -60,9 +62,13 @@ export const loadSearchResults = async function (queryString) {
 // loadSearchResults('pizza');
 
 //--> SEARCH RESULTS PAGINATION
-export const getSearchResultsPage = function (page) {
-  const start = (page - 1) * RESULTS_PER_PAGE; // page:1--> 0
-  const end = page * RESULTS_PER_PAGE; // page:1--> 10
+export const getSearchResultsPage = function (
+  page = state.search.paginationPageState //attain the default if none provided <1>
+) {
+  state.search.paginationPageState = page;
+  const start = (page - 1) * state.search.resultsPerPage; // page:1--> 0
+  const end = page * state.search.resultsPerPage; // page:1--> 10
+  console.log(start, end);
   //-> partial rendering of the retrieved results
   return state.search.results.slice(start, end);
 };
