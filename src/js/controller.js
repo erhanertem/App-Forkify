@@ -10,6 +10,13 @@ import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web stan
 // import { async } from 'regenerator-runtime'; //Imports only what is relavant {async} library in this case
 // import 'regenerator-runtime/runtime.js'; //Imports the whole library
 
+/////////////////////////////////////
+//--> DISABLE PARCEL LIVE CONNECTION TO CLEAR STATE OF THE WEBPAGE BY RELOADING ON EACH SAVE
+if (module.hot) {
+  module.hot.accept();
+}
+/////////////////////////////////////
+
 //////////////////////////////////////////
 // https://forkify-api.herokuapp.com/v2
 //////////////////////////////////////////
@@ -53,6 +60,7 @@ const controlSearchResults = async function () {
 
     //-->Render results
     console.log(model.state.search.results);
+    resultsView.render(model.state.search.results);
   } catch (err) {
     console.error(`${err}🎈`);
   }
