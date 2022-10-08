@@ -59,8 +59,9 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query); //wait for promise to be returned
 
     //-->Render results
-    console.log(model.state.search.results);
-    resultsView.render(model.state.search.results);
+    // console.log(model.state.search.results);
+    // resultsView.render(model.state.search.results); //We render all pages at the moment
+    resultsView.render(model.getSearchResultsPage(1)); //We render a page at the moment
   } catch (err) {
     console.error(`${err}🎈`);
   }

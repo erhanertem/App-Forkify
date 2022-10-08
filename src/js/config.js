@@ -2,3 +2,4 @@
 
 export const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/'; //NOTE: a special constant that would never change is named with uppercase letters like 'PI'
 export const TIMEOUT_SEC = 10;
+export const RESULTS_PER_PAGE = 10;

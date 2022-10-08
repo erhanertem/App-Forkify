@@ -1,4 +1,4 @@
-import { API_URL } from './config.js';
+import { API_URL, RESULTS_PER_PAGE } from './config.js';
 import { getJSON } from './helpers.js';
 
 export const state = {
@@ -58,3 +58,11 @@ export const loadSearchResults = async function (queryString) {
   }
 };
 // loadSearchResults('pizza');
+
+//--> SEARCH RESULTS PAGINATION
+export const getSearchResultsPage = function (page) {
+  const start = (page - 1) * RESULTS_PER_PAGE; // page:1--> 0
+  const end = page * RESULTS_PER_PAGE; // page:1--> 10
+  //-> partial rendering of the retrieved results
+  return state.search.results.slice(start, end);
+};
