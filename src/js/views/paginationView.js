@@ -8,6 +8,22 @@ class PaginationView extends View {
 
   _generateMarkup() {
     const currPage = this._data.paginationPageState;
+    const prevButton = `
+        <button class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+                <use href="${icons}#icon-arrow-left"></use>
+                </svg>
+            <span>Page ${currPage - 1}</span>
+        </button>
+        `;
+    const nextButton = `
+        <button class="btn--inline pagination__btn--next">
+            <span>Page ${currPage + 1}</span>
+            <svg class="search__icon">
+                <use href="${icons}#icon-arrow-right"></use>
+            </svg>
+        </button>
+        `;
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
@@ -15,44 +31,17 @@ class PaginationView extends View {
     //->Page 1, there are other pages
     if (currPage === 1 && numPages > 1) {
       // return 'page 1, others';
-      return `
-          <button class="btn--inline pagination__btn--next">
-            <span>Page ${currPage + 1}</span>
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-          </button>
-      `;
+      return `${nextButton}`;
     }
     //->Last page
     if (currPage === numPages && numPages > 1) {
       // return 'last page';
-      return `
-          <button class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${currPage - 1}</span>
-          </button>
-      `;
+      return `${prevButton}`;
     }
     //->Other page
     if (currPage < numPages) {
       // return 'other pages';
-      return `
-          <button class="btn--inline pagination__btn--next">
-            <span>Page ${currPage + 1}</span>
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-          </button>
-          <button class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${currPage - 1}</span>
-          </button>
-      `;
+      return `${prevButton}${nextButton}`;
     }
     //->Page1, there are other pages
     // return 'only 1 page';
