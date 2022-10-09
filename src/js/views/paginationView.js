@@ -47,6 +47,14 @@ class PaginationView extends View {
     // return 'only 1 page';
     return '';
   }
+
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener('click', function (event) {
+      const btn = event.target.closest('.btn--inline');
+      console.log(btn);
+      handler();
+    });
+  }
 }
 
 export default new PaginationView();

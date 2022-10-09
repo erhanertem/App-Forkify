@@ -72,6 +72,10 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlPagination = function () {
+  console.log('Pag Controller');
+};
+
 //INITIALIZE APP
 const init = function () {
   //-->Eventhandler for hashchange and page reload events
@@ -80,5 +84,8 @@ const init = function () {
   //-->Eventhandler for search keyword submit event
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   searchView.addHandlerSearch(controlSearchResults);
+  //-->Eventhandler for search result pagination btns
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
