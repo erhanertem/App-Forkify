@@ -72,8 +72,10 @@ const controlSearchResults = async function () {
   }
 };
 
-const controlPagination = function () {
-  console.log('Pag Controller');
+const controlPagination = function (goToPage) {
+  // console.log('Pag Controller');
+  console.log(goToPage);
+  //-->Render new results
 };
 
 //INITIALIZE APP

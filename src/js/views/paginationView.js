@@ -9,7 +9,9 @@ class PaginationView extends View {
   _generateMarkup() {
     const currPage = this._data.paginationPageState;
     const prevButton = `
-        <button class="btn--inline pagination__btn--prev">
+        <button data-goto="${
+          currPage - 1
+        }" class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
                 <use href="${icons}#icon-arrow-left"></use>
                 </svg>
@@ -17,7 +19,9 @@ class PaginationView extends View {
         </button>
         `;
     const nextButton = `
-        <button class="btn--inline pagination__btn--next">
+        <button data-goto="${
+          currPage + 1
+        }" class="btn--inline pagination__btn--next">
             <span>Page ${currPage + 1}</span>
             <svg class="search__icon">
                 <use href="${icons}#icon-arrow-right"></use>
@@ -50,9 +54,18 @@ class PaginationView extends View {
 
   addHandlerClick(handler) {
     this._parentElement.addEventListener('click', function (event) {
+      //->Find the closest parent of the btn element we clicked
       const btn = event.target.closest('.btn--inline');
-      console.log(btn);
-      handler();
+      // console.log(btn);
+
+      //->Check if we clicked outside the pagination btns
+      if (!btn) return; //GUARD clause for clicking outside the btn returning null and throwing err
+
+      //->Read the next page to paginate from the data-goto class
+      const goToPage = +btn.dataset.goto; //convert to number froms tring output
+      // console.log(goToPage);
+      //->Call the call-back controller function with the provided page received from gotopage
+      handler(goToPage);
     });
   }
 }
