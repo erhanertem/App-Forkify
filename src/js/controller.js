@@ -84,7 +84,7 @@ const controlPagination = function (goToPage) {
 
 const controlServings = function () {
   //->Update the recipe servings in the model state
-  model.updateServings(6);
+  model.updateServings(8);
   //->Update the recipe view - we simply override the old recipe view by rerendering it with the mutated values
   recipeView.render(model.state.recipe);
 };
@@ -102,6 +102,6 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination);
   //-->Eventhandler for updating recipe servings
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
-  // paginationView.addHandlerClick(controlPagination);
+  recipeView.addHandlerUpdateServings(controlServings);
 };
 init();

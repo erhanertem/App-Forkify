@@ -24,6 +24,15 @@ class RecipeView extends View {
     //NOTE: We rearrange the code under recipeViewas its UI related and we can still call it from controller as it has link to rcipeView and adobt handler variable so that we can instruct to which callback function it would take account of.
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (event) {
+      const btn = event.target.closest('.btn--tiny');
+      if (!btn) return; //Guard Clause to avoid null err if clicked elsewhere other than the intended btns
+      console.log(btn);
+      handler();
+    });
+  }
+
   _generateMarkup() {
     //Prep the HTML markup for the recipe data
     return `

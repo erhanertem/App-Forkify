@@ -84,4 +84,5 @@ export const updateServings = function (newServings) {
   );
   //->servings gets updated by newServing
   state.recipe.servings = newServings;
+  // console.log(state.recipe.ingredients);
 };
