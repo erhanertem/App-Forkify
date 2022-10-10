@@ -74,12 +74,19 @@ const controlSearchResults = async function () {
 
 const controlPagination = function (goToPage) {
   // console.log('Pag Controller');
-  console.log(goToPage);
+  // console.log(goToPage);
   //-->Render new results
   resultsView.render(model.getSearchResultsPage(goToPage)); //We render a page at the moment
 
   //-->Render new pagination buttons
   paginationView.render(model.state.search);
+};
+
+const controlServings = function () {
+  //->Update the recipe servings in the model state
+  model.updateServings(6);
+  //->Update the recipe view - we simply override the old recipe view by rerendering it with the mutated values
+  recipeView.render(model.state.recipe);
 };
 
 //INITIALIZE APP
@@ -93,5 +100,8 @@ const init = function () {
   //-->Eventhandler for search result pagination btns
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   paginationView.addHandlerClick(controlPagination);
+  //-->Eventhandler for updating recipe servings
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
+  // paginationView.addHandlerClick(controlPagination);
 };
 init();

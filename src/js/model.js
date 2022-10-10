@@ -28,7 +28,7 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    // console.log('State recipe:', state.recipe);
+    console.log('State recipe:', state.recipe);
   } catch (err) {
     // console.error(`${err}💥💥💥`);
     throw err; //pass onto controller catch err
@@ -42,7 +42,7 @@ export const loadSearchResults = async function (queryString) {
     //Note: Per instructions as outlined @ forkify-api.herokuapp.com for search operations
     const data = await getJSON(`${API_URL}?search=${queryString}`);
     // console.log(data);
-    console.log(state.search.query);
+    console.log('Searched querry keywords:', state.search.query);
 
     state.search.results = data.data.recipes.map(recipe => {
       return {
@@ -68,7 +68,20 @@ export const getSearchResultsPage = function (
   state.search.paginationPageState = page;
   const start = (page - 1) * state.search.resultsPerPage; // page:1--> 0
   const end = page * state.search.resultsPerPage; // page:1--> 10
-  console.log(start, end);
+  // console.log(start, end);
   //-> partial rendering of the retrieved results
   return state.search.results.slice(start, end);
+};
+
+//-->MUTATING RECIPE SERVINGS
+export const updateServings = function (newServings) {
+  //->Each ingredient gets its updated quantities
+  state.recipe.ingredients.forEach(
+    ingredient =>
+      (ingredient.quantity =
+        (ingredient.quantity * newServings) / state.recipe.servings)
+    //newquantity = oldquantity * newServings/oldServings
+  );
+  //->servings gets updated by newServing
+  state.recipe.servings = newServings;
 };
