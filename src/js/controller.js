@@ -76,6 +76,10 @@ const controlPagination = function (goToPage) {
   // console.log('Pag Controller');
   console.log(goToPage);
   //-->Render new results
+  resultsView.render(model.getSearchResultsPage(goToPage)); //We render a page at the moment
+
+  //-->Render new pagination buttons
+  paginationView.render(model.state.search);
 };
 
 //INITIALIZE APP
