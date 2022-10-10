@@ -26,10 +26,11 @@ class RecipeView extends View {
 
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (event) {
-      const btn = event.target.closest('.btn--tiny');
+      const btn = event.target.closest('.btn--update-servings');
       if (!btn) return; //Guard Clause to avoid null err if clicked elsewhere other than the intended btns
-      console.log(btn);
-      handler();
+      // console.log(btn);
+      const updateTo = +btn.dataset.updateTo; //we grap data-update-to (dataset.updateTo) , change it to numeric value and input as newServings value to controlServings event handler call-back function @ controller.js
+      if (updateTo > 0) handler(updateTo); //Guard clause to avoid below 1 servings
     });
   }
 
@@ -65,12 +66,20 @@ class RecipeView extends View {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to="${
+                this._data.servings - 1
+                // > 0
+                //           ? this._data.servings - 1
+                //           : this._data.servings //Guard clause to avoid below 1 servings
+                //Alternate method other than checking in the addHandlerUpdateServings()
+              }">
                 <svg>
                   <use href="${icons}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to="${
+                this._data.servings + 1
+              }">
                 <svg>
                   <use href="${icons}#icon-plus-circle"></use>
                 </svg>
