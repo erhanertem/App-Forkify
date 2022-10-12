@@ -32,6 +32,9 @@ const controlRecipes = async function () {
     //-->Start loading spinner inside the recipeContainer
     recipeView.renderSpinner();
 
+    //-->Update results view to highlight the selected search result
+    resultsView.update(model.getSearchResultsPage()); //we use update() rather than render() since only changed item gets rendered
+
     //-->Load recipe data
     await model.loadRecipe(id);
     //Note: loadREcipe is an async function and would return a promise so we have to wait for it

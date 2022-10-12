@@ -21,9 +21,6 @@ export default class View {
 
   //-->Selective rendering algorithm
   update(data) {
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError(); //GUARD clause if render() receives no data/null/undefined || an empty array
-
     this._data = data; //We assign data for the whole view object
 
     //-->#1
