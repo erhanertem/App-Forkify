@@ -85,8 +85,11 @@ const controlPagination = function (goToPage) {
 const controlServings = function (newServings) {
   //->Update the recipe servings in the model state
   model.updateServings(newServings);
-  //->Update the recipe view - we simply override the old recipe view by rerendering it with the mutated values
-  recipeView.render(model.state.recipe);
+  //->Update the recipe view
+  // //#1 BRUTEFORCE RENDER - We simply override the old recipe view by re-rendering it with the mutated values, however it creates unwanted image splashes while loading
+  // recipeView.render(model.state.recipe);
+  //#2 PARTIAL/SELECTIVE RENDER - Only changed items gets rendered
+  recipeView.update(model.state.recipe);
 };
 
 //INITIALIZE APP

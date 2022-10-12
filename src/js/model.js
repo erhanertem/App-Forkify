@@ -76,6 +76,7 @@ export const getSearchResultsPage = function (
 //-->MUTATING RECIPE SERVINGS
 export const updateServings = function (newServings) {
   //->Each ingredient gets its updated quantities
+  // Therefore foreach mutator method is suited
   state.recipe.ingredients.forEach(
     ingredient =>
       (ingredient.quantity =

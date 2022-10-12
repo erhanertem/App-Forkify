@@ -19,6 +19,56 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  //-->Selective rendering algorithm
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError(); //GUARD clause if render() receives no data/null/undefined || an empty array
+
+    this._data = data; //We assign data for the whole view object
+
+    //-->#1
+    //-->Attain new markup with dynamic updates
+    const newMarkup = this._generateMarkup(); //We assign the new HTML markup to a variable
+    // console.log(newMarkup);
+
+    //-->Create a virtual DOM from this markup
+    const newDOM = document.createRange().createContextualFragment(newMarkup); //Note: We make a virtual DOM copy of the new markup
+    // console.log(newDOM);
+    //HTML DOM API createRange() creates a new range object for fortcoming methods to be active within
+    //createContextualFragment() returns the HTML markup fragment within the created range
+    //-->Put all the virtualDOM items on a nodelist and change it to array for comparison
+    const newElements = Array.from(newDOM.querySelectorAll('*')); //Select all the elements of this virtual DOM - Returns a nodelist then which we change it to real array via Array.from()
+    // console.log('virtual DOM elements', newElements);
+
+    //-->#2
+    //-->Put all the existingDOM items on a nodelist and change it to array for comparison
+    const currElements = Array.from(this._parentElement.querySelectorAll('*')); //Select all the elelemnts of the existing DOM then which we chnage it to real array via Array.from()
+    // console.log('current DOM elements', currElements);
+    // console.log('virtual DOM elements', newElements);
+
+    //-->#3
+    //-->Compare virtualDOM to existingDOM for any differences and update existingDOM when necessary
+    newElements.forEach((newEl, index) => {
+      const curEl = currElements[index]; //Get the exisitng DOM element @ the the same index
+      // console.log(curEl, newEl.isEqualNode(curEl));
+      //->Update Changed Text Only
+      if (
+        !newEl.isEqualNode(curEl) && //if virtual node is not equal to existing node
+        newEl.firstChild?.nodeValue.trim() !== '' //if the first node of the virtual DOM element's trimmed nodeValue is not an empty string
+      ) {
+        // console.log('🎗', newEl.firstChild.nodeValue.trim());
+        curEl.textContent = newEl.textContent;
+      }
+      //->Update Changed Attributes
+      if (!newEl.isEqualNode(curEl)) {
+        // console.log(newEl.attributes); //Returns a nodemap of all attributes bound to an element which entails Array.from() to turn into an array.
+        Array.from(newEl.attributes).forEach(
+          attr => curEl.setAttribute(attr.name, attr.value) //Sets or changes an attribute's name and value simultaneously.
+        );
+      }
+    });
+  }
+
   _clear() {
     this._parentElement.innerHTML = '';
   }
