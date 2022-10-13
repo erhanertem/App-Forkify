@@ -95,6 +95,12 @@ const controlServings = function (newServings) {
   recipeView.update(model.state.recipe);
 };
 
+const controlAddBookmark = function () {
+  model.addBookmark(model.state.recipe);
+  // console.log('bookmark current recipe nominee:', model.state.recipe);
+  recipeView.update(model.state.recipe); //render selectively only changed items - bookmark in this case
+};
+
 //INITIALIZE APP
 const init = function () {
   //-->Eventhandler for hashchange and page reload events
@@ -109,5 +115,8 @@ const init = function () {
   //-->Eventhandler for updating recipe servings
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerUpdateServings(controlServings);
+  //-->Eventhandler for bookmarking current recipe
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
 };
 init();
