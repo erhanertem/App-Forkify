@@ -96,7 +96,13 @@ const controlServings = function (newServings) {
 };
 
 const controlAddBookmark = function () {
-  model.addBookmark(model.state.recipe);
+  //-->Cycle thru the item to add or remove bookmark conditions
+  //->if the item is not bookmarked, add a bookmark
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  //->else if the item is bookmarked, remove the bookmark
+  else if (model.state.recipe.bookmarked)
+    model.deleteBookmark(model.state.recipe.id);
+  // console.log(model.state.recipe.bookmarked);
   // console.log('bookmark current recipe nominee:', model.state.recipe);
   recipeView.update(model.state.recipe); //render selectively only changed items - bookmark in this case
 };

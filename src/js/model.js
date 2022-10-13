@@ -13,11 +13,24 @@ export const state = {
 };
 
 export const addBookmark = function (recipe) {
+  //when we create we would need the data
   //-->Add bookmark
   state.bookmarks.push(recipe);
 
   //-->Mark current recipe as bookmarked
   state.recipe.bookmarked = true;
+};
+
+export const deleteBookmark = function (id) {
+  //when we remove, we would need the id, thats a common pattern in programming.
+  //-->Deletebookmark
+  //->Find the index of the id in the bookmarks array
+  const index = state.bookmarks.findIndex(el => el.id === id);
+  //->Remove the item from the array
+  state.bookmarks.splice(index, 1); //slice removes 1 item @ the specified index
+
+  //-->Mark current recipe as un-bookmarked
+  state.recipe.bookmarked = false;
 };
 
 export const loadRecipe = async function (id) {
