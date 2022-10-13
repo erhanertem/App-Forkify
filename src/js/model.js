@@ -54,6 +54,9 @@ export const loadSearchResults = async function (queryString) {
       };
     });
     // console.log(state.search.results);
+
+    //-->Reset paginationPageState
+    state.search.paginationPageState = 1; //Fixed the bug of pagination not resetting after each search
   } catch {
     // console.error(`${err}💥💥💥`);
     throw err; //pass onto controller catch err

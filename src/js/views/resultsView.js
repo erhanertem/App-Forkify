@@ -13,8 +13,8 @@ class ResultsView extends View {
   _generateMarkupPreview(result) {
     const id = window.location.hash.slice(1); //read the id from the browser address bar excluding #
     //result is the array item pertinent to _data thats being mapped
-    console.log('result', result);
-    console.log('id', id);
+    // console.log('result', result);
+    // console.log('id', id);
 
     return `
           <li class="preview">
