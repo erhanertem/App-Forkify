@@ -16,8 +16,8 @@ export const addBookmark = function (recipe) {
   //-->Add bookmark
   state.bookmarks.push(recipe);
 
-  //-->Mark current recipe as bookmarked in later searches - back-check against bookmark list
-  if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+  //-->Mark current recipe as bookmarked
+  state.recipe.bookmarked = true;
 };
 
 export const loadRecipe = async function (id) {

@@ -6,7 +6,7 @@ class ResultsView extends View {
   _errorMessage = 'No recipe matching your query. Please try again.'; //add a custom default error message relevant to UI
 
   _generateMarkup() {
-    console.log('_data', this._data);
+    // console.log('_data', this._data);
     return this._data.map(this._generateMarkupPreview).join('');
   }
 
