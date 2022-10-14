@@ -25,21 +25,21 @@ export default class View {
 
     //-->#1
     //-->Attain new markup with dynamic updates
-    const newMarkup = this._generateMarkup(); //We assign the new HTML markup to a variable
-    // console.log(newMarkup);
+    const newMarkup = this._generateMarkup(); //We assign the new HTML markup to a variable. It is not yet displayed in the UI or exists in the current HTML markup.
+    // console.log(typeof newMarkup); //string type
 
     //-->Create a virtual DOM from this markup
-    const newDOM = document.createRange().createContextualFragment(newMarkup); //Note: We make a virtual DOM copy of the new markup
-    // console.log(newDOM);
+    const newDOM = document.createRange().createContextualFragment(newMarkup); //Note: We make a virtual DOM copy of the new markup. newMarkup is a string. We have to turn into a nodelist that we can make a comparison with.
+    // console.log(typeof newDOM); //object type - DOM object - like a virtual html file in the memory
     //HTML DOM API createRange() creates a new range object for fortcoming methods to be active within
     //createContextualFragment() returns the HTML markup fragment within the created range
     //-->Put all the virtualDOM items on a nodelist and change it to array for comparison
-    const newElements = Array.from(newDOM.querySelectorAll('*')); //Select all the elements of this virtual DOM - Returns a nodelist then which we change it to real array via Array.from()
+    const newElements = Array.from(newDOM.querySelectorAll('*')); //Select all the elements of this virtual DOM object - Returns a nodelist then from which we change it to real array via Array.from()
     // console.log('virtual DOM elements', newElements);
 
     //-->#2
     //-->Put all the existingDOM items on a nodelist and change it to array for comparison
-    const currElements = Array.from(this._parentElement.querySelectorAll('*')); //Select all the elelemnts of the existing DOM then which we chnage it to real array via Array.from()
+    const currElements = Array.from(this._parentElement.querySelectorAll('*')); //Select all the elements of the existing DOM parent element then which we change it to real array via Array.from()
     // console.log('current DOM elements', currElements);
     // console.log('virtual DOM elements', newElements);
 

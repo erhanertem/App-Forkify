@@ -32,7 +32,7 @@ const controlRecipes = async function () {
     //-->Start loading spinner inside the recipeContainer
     recipeView.renderSpinner();
 
-    //-->Update results view to highlight the selected search result
+    //-->Update results view to highlight the selected search result on the current page(model.getSearchResultPage())
     resultsView.update(model.getSearchResultsPage()); //we use update() rather than render() since only changed item gets rendered
 
     //-->Load recipe data
@@ -41,7 +41,7 @@ const controlRecipes = async function () {
 
     //-->Render recipe data
     recipeView.render(model.state.recipe);
-    // console.log('render: ', model.state.recipe);
+    console.log('🎃render: ', model.state.recipe);
     // const recipeView = new RecipeView(model.state.recipe);
     //Note: we could have recipeView.js export the object and we call create an instance of it here but we have chosen to create an instance of the object in recipeView.js, REcipeview object remained private and we just call it from here with its data input from model.js
   } catch (err) {
@@ -96,32 +96,33 @@ const controlServings = function (newServings) {
 };
 
 const controlAddBookmark = function () {
-  //-->Cycle thru the item to add or remove bookmark conditions
-  //->if the item is not bookmarked, add a bookmark
+  // model.addBookmark(model.state.recipe);
+  // console.log('🎃new bookmark:', model.state.recipe);
+  // console.log('🎆', model.state.recipe.bookmarked);
+  // //-->Cycle thru the item to add or remove bookmark conditions
+  // //->if the item is not bookmarked, add a bookmark else if the item is bookmarked, remove the bookmark
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
-  //->else if the item is bookmarked, remove the bookmark
-  else if (model.state.recipe.bookmarked)
-    model.deleteBookmark(model.state.recipe.id);
-  // console.log(model.state.recipe.bookmarked);
-  // console.log('bookmark current recipe nominee:', model.state.recipe);
+  else model.deleteBookmark(model.state.recipe.id);
+  // // console.log(model.state.recipe.bookmarked);
+  // // console.log('bookmark current recipe nominee:', model.state.recipe);
   recipeView.update(model.state.recipe); //render selectively only changed items - bookmark in this case
 };
 
 //INITIALIZE APP
 const init = function () {
-  //-->Eventhandler for hashchange and page reload events
+  //-->Eventhandler for hashchange and page reload events publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerRender(controlRecipes);
-  //-->Eventhandler for search keyword submit event
+  //-->Eventhandler for search keyword submit event publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   searchView.addHandlerSearch(controlSearchResults);
-  //-->Eventhandler for search result pagination btns
+  //-->Eventhandler for search result pagination btns publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   paginationView.addHandlerClick(controlPagination);
-  //-->Eventhandler for updating recipe servings
+  //-->Eventhandler for updating recipe servings publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerUpdateServings(controlServings);
-  //-->Eventhandler for bookmarking current recipe
+  //-->Eventhandler for bookmarking current recipe publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerAddBookmark(controlAddBookmark);
 };

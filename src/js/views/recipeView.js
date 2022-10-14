@@ -12,12 +12,12 @@ class RecipeView extends View {
   _errorMessage = 'We could not find that recipe. Please try another one!'; //add a custom default error message relevant to UI
 
   addHandlerRender(handler) {
-    //-->Eventhandler for hashchange and page reload events
+    //-->Eventhandler for hashchange and page reload event subscriber
     // //->Scenario #1: In the event of click on the list of recipe with a different hashid that tirgger change on url hash address change of the browser(window)
     // window.addEventListener('hashchange', controlRecipes);
     // //->Scenario #2: In the event of copy and paste the same url to another browser(window) tab
     // window.addEventListener('load', controlRecipes);
-    //->Condensed version of the above two event listeners
+    //->Combined version of the above two event listeners
     ['hashchange', 'load'].forEach(event =>
       window.addEventListener(event, handler)
     );
@@ -25,6 +25,7 @@ class RecipeView extends View {
   }
 
   addHandlerUpdateServings(handler) {
+    //-->Eventhandler for updating recipe servings subscriber
     this._parentElement.addEventListener('click', function (event) {
       const btn = event.target.closest('.btn--update-servings');
       if (!btn) return; //Guard Clause to avoid null err if clicked elsewhere other than the intended btns
@@ -35,9 +36,10 @@ class RecipeView extends View {
   }
 
   addHandlerAddBookmark(handler) {
+    //-->Eventhandler for bookmarking current recipe subscriber
     this._parentElement.addEventListener('click', function (event) {
-      const btn = event.target.closest('.btn-bookmark');
-      if (!btn) return;
+      const btn = event.target.closest('.btn--bookmark');
+      if (!btn) return; //Guard clause if clicked off the target parent element to avoid null click err
       handler();
     });
   }
@@ -97,7 +99,7 @@ class RecipeView extends View {
 
           <div class="recipe__user-generated">
           </div>
-          <button class="btn--round btn-bookmark">
+          <button class="btn--round btn--bookmark">
             <svg class="">
               <use href="${icons}#icon-bookmark${
       this._data.bookmarked ? '-fill' : ''

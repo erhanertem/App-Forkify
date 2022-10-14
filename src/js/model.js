@@ -53,12 +53,14 @@ export const loadRecipe = async function (id) {
     // console.log('State recipe:', state.recipe);
 
     //-->Persist bookmarks between recipe search instances by checking recipe viewed against the registered bookmark list
-    // if (state.bookmarks.some(bookmark => bookmark.id === id))
-    //   state.recipe.bookmarked = true;
-    // else state.recipe.bookmarked = false;
-    state.recipe.bookmarked = state.bookmarks.some(bookmark => {
-      bookmark.id === id;
-    }); //NOTE: Some() returns a boolean value. If bookmark ids do not match returns either false or true for state.recipe.bookmarked
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarked = true;
+    else state.recipe.bookmarked = false;
+    // state.recipe.bookmarked = state.bookmarks.some(bookmark => {
+    //   bookmark.id === id;
+    // });
+    // console.log('🎆', state.recipe.bookmarked);
+    //NOTE: Some() returns a boolean value. If bookmark ids do not match returns either false or true for state.recipe.bookmarked
   } catch (err) {
     // console.error(`${err}💥💥💥`);
     throw err; //pass onto controller catch err
