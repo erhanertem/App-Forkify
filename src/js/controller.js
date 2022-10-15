@@ -36,6 +36,9 @@ const controlRecipes = async function () {
     //-->Update results view to highlight the selected search result on the current page(model.getSearchResultPage())
     resultsView.update(model.getSearchResultsPage()); //we use update() rather than render() since only changed item gets rendered
 
+    //-->Update bookmarks view to highlight the selected search result
+    bookmarksView.update(model.state.bookmarks);
+
     //-->Load recipe data
     await model.loadRecipe(id);
     //Note: loadREcipe is an async function and would return a promise so we have to wait for it
