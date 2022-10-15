@@ -6,6 +6,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import previewView from './views/previewView.js';
 
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
