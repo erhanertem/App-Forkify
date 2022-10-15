@@ -12,6 +12,10 @@ export const state = {
   bookmarks: [],
 };
 
+const persistBookmarks = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
 export const addBookmark = function (recipe) {
   //when we create we would need the data
   //-->Add bookmark
@@ -19,6 +23,9 @@ export const addBookmark = function (recipe) {
 
   //-->Mark current recipe as bookmarked
   state.recipe.bookmarked = true;
+
+  //-->Record the revamped bookmark locally
+  persistBookmarks();
 };
 
 export const deleteBookmark = function (id) {
@@ -31,6 +38,9 @@ export const deleteBookmark = function (id) {
 
   //-->Mark current recipe as un-bookmarked
   state.recipe.bookmarked = false;
+
+  //-->Record the revamped bookmark locally
+  persistBookmarks();
 };
 
 export const loadRecipe = async function (id) {
