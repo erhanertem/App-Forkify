@@ -126,9 +126,14 @@ const controlStashedBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddRecipe = function (newRecipe) {
+const controlAddRecipe = async function (newRecipe) {
   // console.log(newRecipe);
-  model.uploadRecipe(newRecipe);
+  try {
+    await model.uploadRecipe(newRecipe);
+  } catch (err) {
+    // console.log('🧨', err);
+    addRecipeView.renderError(err.message); //Error message gets rendered in UI
+  }
 };
 
 //INITIALIZE APP

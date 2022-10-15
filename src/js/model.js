@@ -136,18 +136,28 @@ export const updateServings = function (newServings) {
 };
 
 export const uploadRecipe = async function (newRecipe) {
-  // console.log(Object.entries(newRecipe));
-  // const ingredients = Object.entries(newRecipe).filter(
-  //   entry => entry[0].startsWith('ingredient') && entry[1] !== ''
-  // ); //filter out data that its key pair starts with ingredient and value pair is not empty
-  const ingredients = newRecipe
-    .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-    //filter out data that its key pair starts with ingredient and value pair is not empty
-    .map(entry => {
-      const [quantity, unit, description] = entry[1]
-        .replaceAll(' ', '')
-        .split(',');
-      return { quantity: quantity ? +quantity : null, unit, description };
-    });
-  console.log(ingredients);
+  try {
+    // console.log(Object.entries(newRecipe));
+    // const ingredients = Object.entries(newRecipe).filter(
+    //   entry => entry[0].startsWith('ingredient') && entry[1] !== ''
+    // ); //filter out data that its key pair starts with ingredient and value pair is not empty
+    const ingredients = newRecipe
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+      //filter out data that its key pair starts with ingredient and value pair is not empty
+      .map(entry => {
+        const entryArr = entry[1].replaceAll(' ', '').split(','); //we created this line so we are able to check if arr length is 3 or not as it is required by the submission form
+        if (entryArr.length !== 3)
+          throw new Error(
+            'Wrong input format! Please use the correct format as instructed in the submission form.'
+          ); //creates the custom err message and dials the catch block.
+        // console.log(entryArr);
+
+        const [quantity, unit, description] = entryArr;
+
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+    console.log(ingredients);
+  } catch (err) {
+    throw err; //Dialed error here gets ditched to controlAddRecipe @ controller.js
+  }
 };
