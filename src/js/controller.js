@@ -5,6 +5,7 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
@@ -41,7 +42,7 @@ const controlRecipes = async function () {
 
     //-->Render recipe data
     recipeView.render(model.state.recipe);
-    console.log('🎃render: ', model.state.recipe);
+    // console.log('🎃render: ', model.state.recipe);
     // const recipeView = new RecipeView(model.state.recipe);
     //Note: we could have recipeView.js export the object and we call create an instance of it here but we have chosen to create an instance of the object in recipeView.js, REcipeview object remained private and we just call it from here with its data input from model.js
   } catch (err) {
@@ -99,13 +100,16 @@ const controlAddBookmark = function () {
   // model.addBookmark(model.state.recipe);
   // console.log('🎃new bookmark:', model.state.recipe);
   // console.log('🎆', model.state.recipe.bookmarked);
-  // //-->Cycle thru the item to add or remove bookmark conditions
-  // //->if the item is not bookmarked, add a bookmark else if the item is bookmarked, remove the bookmark
+  //-->Cycle thru the item to add or remove bookmark conditions
+  //->if the item is not bookmarked, add a bookmark else if the item is bookmarked, remove the bookmark
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
   else model.deleteBookmark(model.state.recipe.id);
   // // console.log(model.state.recipe.bookmarked);
   // // console.log('bookmark current recipe nominee:', model.state.recipe);
+  //-->Update recipe view
   recipeView.update(model.state.recipe); //render selectively only changed items - bookmark in this case
+  //-->Render the bookmarks in folding menu (@ the corner of UI)
+  bookmarksView.render(model.state.bookmarks);
 };
 
 //INITIALIZE APP
