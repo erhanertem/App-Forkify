@@ -134,3 +134,20 @@ export const updateServings = function (newServings) {
   state.recipe.servings = newServings;
   // console.log(state.recipe.ingredients);
 };
+
+export const uploadRecipe = async function (newRecipe) {
+  // console.log(Object.entries(newRecipe));
+  // const ingredients = Object.entries(newRecipe).filter(
+  //   entry => entry[0].startsWith('ingredient') && entry[1] !== ''
+  // ); //filter out data that its key pair starts with ingredient and value pair is not empty
+  const ingredients = newRecipe
+    .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+    //filter out data that its key pair starts with ingredient and value pair is not empty
+    .map(entry => {
+      const [quantity, unit, description] = entry[1]
+        .replaceAll(' ', '')
+        .split(',');
+      return { quantity: quantity ? +quantity : null, unit, description };
+    });
+  console.log(ingredients);
+};

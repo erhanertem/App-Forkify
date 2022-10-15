@@ -13,8 +13,6 @@ class AddRecipeView extends View {
     this._addHandlerShowModal(); //auto-execute immediately
     //-->Eventhandler for closing add-recipe modal
     this._addHandlerHideModal(); //auto-execute immediately
-    // //-->Eventhandler for submitting @ add-recipe modal
-    // this.addHandlerUpload(); //auto-execute immediately
   }
 
   toggleWindow() {
@@ -43,10 +41,10 @@ class AddRecipeView extends View {
       event.preventDefault(); //Prevent auto submit behavior
       // console.log('🎈', this); //this is the whole form element marked with class 'upload' as in the _parentElement selection
       const dataArr = [...new FormData(this)]; //NOTE: FormData API easily constructs a set of key/value pairs representing form fields and their values, which can then be easily sent using the fetch() API. We have to SPREAD it and then turn into mapped array before we can log it.
-      // console.log(dataArr);
-      const data = Object.fromEntries(dataArr); //Note: This crreates an object from key/value pairs map
-
-      handler(data);
+      console.log('🧨 DataArray', dataArr);
+      // const data = Object.fromEntries(dataArr); //Note: This creates an object from key/value pairs map
+      // console.log('🧨 Data', data);
+      handler(dataArr); //is the newRecipe variable in controller.controlAddRecipe function
     });
   }
 
