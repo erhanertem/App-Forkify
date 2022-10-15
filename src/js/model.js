@@ -156,7 +156,21 @@ export const uploadRecipe = async function (newRecipe) {
 
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-    console.log(ingredients);
+    // console.log(ingredients);
+    // console.log('++', newRecipe);
+    const data = Object.fromEntries(newRecipe);
+    // console.log('+++', data);
+
+    const recipe = {
+      title: data.title,
+      source_url: data.sourceUrl,
+      image_url: data.image,
+      publisher: data.publisher,
+      cooking_time: +data.cookingTime,
+      servings: +data.servings,
+      ingredients: ingredients,
+    };
+    // console.log(recipe);
   } catch (err) {
     throw err; //Dialed error here gets ditched to controlAddRecipe @ controller.js
   }
