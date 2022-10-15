@@ -6,7 +6,6 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
-import previewView from './views/previewView.js';
 
 //->Establish links to polifilling libraries
 import 'core-js/stable'; //NOTE: polyfill only stable features - ES and web standards:
@@ -36,7 +35,6 @@ const controlRecipes = async function () {
 
     //-->Update results view to highlight the selected search result on the current page(model.getSearchResultPage())
     resultsView.update(model.getSearchResultsPage()); //we use update() rather than render() since only changed item gets rendered
-
     //-->Update bookmarks view to highlight the selected search result
     bookmarksView.update(model.state.bookmarks);
 
@@ -50,7 +48,8 @@ const controlRecipes = async function () {
     // const recipeView = new RecipeView(model.state.recipe);
     //Note: we could have recipeView.js export the object and we call create an instance of it here but we have chosen to create an instance of the object in recipeView.js, REcipeview object remained private and we just call it from here with its data input from model.js
   } catch (err) {
-    // console.error(`${err}🎈`);
+    // debugger;
+    // console.error(err);
     recipeView.renderError();
   }
 };
@@ -116,8 +115,20 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlStashedBookmarks = function () {
+  const storage = JSON.parse(localStorage.getItem('bookmarks')); //read the local storage
+  // console.log(storage);
+  if (storage) model.state.bookmarks = storage; //reassign the stored data to state.bookmarks array if there is something in it
+  // console.log('bookmark arr', state.bookmarks);
+
+  bookmarksView.render(model.state.bookmarks);
+};
+
 //INITIALIZE APP
 const init = function () {
+  //-->Eventhandler for rendering locallystored bookmarks publisher
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
+  bookmarksView.addHandlerRender(controlStashedBookmarks);
   //-->Eventhandler for hashchange and page reload events publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerRender(controlRecipes);

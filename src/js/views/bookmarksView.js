@@ -6,6 +6,11 @@ class BookmarksView extends View {
   _successMessage = ''; //add a custom success message relevant to UI
   _errorMessage = 'No bookmarks yet. Find a nice recipe and bookmark it.'; //add a custom default error message relevant to UI
 
+  //-->Eventhandler for rendering locallystored bookmarks subscriber
+  addHandlerRender(handler) {
+    window.addEventListener('load', handler);
+  }
+
   _generateMarkup() {
     // console.log('_data', this._data); //all of the bookmarks returned by the search thru API
     return this._data
