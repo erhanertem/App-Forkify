@@ -8,7 +8,13 @@
 
 &emsp;
 
+Main takeaways:
+
 - Establish MVC Architecture
+- Working with Async functions
+- Dealing with online-API for exchanging JSON data (Forkify API)
+- Subscriber-Publisher type eventhandling
+- FormData Web API
 
 &emsp;
 

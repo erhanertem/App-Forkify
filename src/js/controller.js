@@ -117,12 +117,17 @@ const controlAddBookmark = function () {
 };
 
 const controlStashedBookmarks = function () {
+  //-->Read the locally stashed bookmarks
   const storage = JSON.parse(localStorage.getItem('bookmarks')); //read the local storage
   // console.log(storage);
   if (storage) model.state.bookmarks = storage; //reassign the stored data to state.bookmarks array if there is something in it
   // console.log('bookmark arr', state.bookmarks);
-
+  //-->Render the bookmarks list
   bookmarksView.render(model.state.bookmarks);
+};
+
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
 };
 
 //INITIALIZE APP
@@ -145,5 +150,8 @@ const init = function () {
   //-->Eventhandler for bookmarking current recipe publisher
   //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  //-->Eventhandler for submitting a new recipe publisher
+  //Note: Publisher/subscriber pattern: DOM selection and event handler types remain in the views section
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();
