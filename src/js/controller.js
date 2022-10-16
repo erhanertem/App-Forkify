@@ -143,6 +143,12 @@ const controlAddRecipe = async function (newRecipe) {
     //-->Display success message
     addRecipeView.renderMessage(); //by default @view it is this._successMessage , so no input necessary
 
+    //-->Rerender the bookmark view
+    bookmarksView.render(model.state.bookmarks);
+
+    //-->Change hashID in the URL to reflect the recently uploaded recipe's hashID after closing the modal window without reloading the page - HISTORY API
+    window.history.pushState(null, null, `#${model.state.recipe.id}`); // state,title,url null just iginres the first two parameters, we are interested in url only
+
     //-->Close submitted form window
     setTimeout(function () {
       addRecipeView.toggleWindow();

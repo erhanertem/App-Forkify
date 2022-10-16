@@ -15,6 +15,7 @@ Main takeaways:
 - Dealing with online-API for exchanging JSON data (Forkify API)
 - Subscriber-Publisher type eventhandling
 - FormData Web API
+- History Web API
 
 &emsp;
 
