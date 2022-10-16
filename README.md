@@ -16,6 +16,17 @@ Main takeaways:
 - Subscriber-Publisher type eventhandling
 - FormData Web API
 - History Web API
+- JSDoc documentation
+
+TODO List:
+
+- Calc calories of each ingredient from spoonacular API
+- Weekly meal planner feature that would assign recipes for the next 7 days
+- A button printing out a shopping list to the user for the selected recipe in recipeView
+- Implement ingredient input in a more robust multiple drop down menu style
+- Ingredient validation before submitting the form
+- Sort search retults by time of register, calories, etc.
+- Display number of current page between the pagination buttons
 
 &emsp;
 
