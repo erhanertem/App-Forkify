@@ -5,6 +5,17 @@ import icons from 'url:../../img/icons.svg'; //NOTE: Parcel 2 requires url: for 
 export default class View {
   _data;
 
+  //-->A quick dive into JSDoc documentation
+  //It provides custom definition for the function  when hovered over it
+  /**
+   * Render the received object to the DOM
+   * @param {Object | Object[]} data The data to be rendered (e.g. recipe)
+   * @this {Object} View instance
+   * @return {null | undefined | Object[]} Displays render message if no data or empty array is entered
+   * @author Erhan ERTEM
+   * @todo Finish implementation
+   */
+
   render(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError(); //GUARD clause if render() receives no data/null/undefined || an empty array
