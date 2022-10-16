@@ -43,23 +43,38 @@ export const deleteBookmark = function (id) {
   persistBookmarks();
 };
 
+const createRecipeObject = function (data) {
+  const { recipe } = data.data; // let recipe = data.data.recipe;
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
     //-->Load recipe data
     const data = await getJSON(`${API_URL}${id}`); //we await data promise
 
     //-->Lets create our own version of the recipe to be used in the app under the *STATE* object
-    const { recipe } = data.data; // let recipe = data.data.recipe;
-    state.recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
+    state.recipe = createRecipeObject(data);
+    // const { recipe } = data.data; // let recipe = data.data.recipe;
+    // state.recipe = {
+    //   id: recipe.id,
+    //   title: recipe.title,
+    //   publisher: recipe.publisher,
+    //   sourceUrl: recipe.source_url,
+    //   image: recipe.image_url,
+    //   servings: recipe.servings,
+    //   cookingTime: recipe.cooking_time,
+    //   ingredients: recipe.ingredients,
+    // };
     // console.log('State recipe:', state.recipe);
 
     //-->Persist bookmarks between recipe search instances by checking recipe viewed against the registered bookmark list
