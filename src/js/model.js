@@ -64,7 +64,7 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
   try {
     //-->Load recipe data
-    const data = await AJAX(`${API_URL}${id}`); //we await data promise
+    const data = await AJAX(`${API_URL}${id}?key=${API_KEY}`); //we await data promise
 
     //-->Lets create our own version of the recipe to be used in the app under the *STATE* object
     state.recipe = createRecipeObject(data);
@@ -103,7 +103,7 @@ export const loadSearchResults = async function (queryString) {
     state.search.query.push(queryString); //BUG: (Pending) store the query IF GETJSON TESTS SUCCESSFULL!!!!
 
     //Note: Per instructions as outlined @ forkify-api.herokuapp.com for search operations
-    const data = await AJAX(`${API_URL}?search=${queryString}`);
+    const data = await AJAX(`${API_URL}?search=${queryString}&key=${API_KEY}`);
     // console.log(data);
     console.log('Searched querry keywords:', state.search.query);
 
@@ -114,6 +114,8 @@ export const loadSearchResults = async function (queryString) {
         publisher: recipe.publisher,
         sourceUrl: recipe.source_url,
         image: recipe.image_url,
+        ...(recipe.key && { key: recipe.key }),
+        //VERY IMPORTANT! recipe.key would shortcircuit if key field does not exist in the recipe. If it exists, then key:recipe.key assigment is executed with destructuring from its object state
       };
     });
     // console.log(state.search.results);
