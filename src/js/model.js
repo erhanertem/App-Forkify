@@ -167,7 +167,8 @@ export const uploadRecipe = async function (newRecipe) {
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       //filter out data that its key pair starts with ingredient and value pair is not empty
       .map(entry => {
-        const entryArr = entry[1].replaceAll(' ', '').split(','); //we created this line so we are able to check if arr length is 3 or not as it is required by the submission form
+        // const entryArr = entry[1].replaceAll(' ', '').split(','); //we created this line so we are able to check if arr length is 3 or not as it is required by the submission form
+        const entryArr = entry[1].split(',').map(element => el.trim()); //we created this line so we are able to check if arr length is 3 or not as it is required by the submission form
         if (entryArr.length !== 3)
           throw new Error(
             'Wrong input format! Please use the correct format as instructed in the submission form.'
