@@ -1,6 +1,7 @@
 // 'use strict'; //NOTE: ES6 modules have implict strict mode, and Babel dicates strict mode by default as well.
 //->MVC module imports
 import * as model from './model.js';
+import { MODAL_CLOSE_WAIT } from './config.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
@@ -129,7 +130,20 @@ const controlStashedBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
   // console.log(newRecipe);
   try {
+    //-->Upload the new recipe data
     await model.uploadRecipe(newRecipe);
+    // console.log('🥽', model.state.recipe);
+
+    //-->Render recipe view
+    recipeView.render(model.state.recipe);
+
+    //-->Display success message
+    addRecipeView.renderMessage(); //by default @view it is this._successMessage , so no input necessary
+
+    //-->Close submitted form window
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_WAIT * 1000);
   } catch (err) {
     // console.log('🧨', err);
     addRecipeView.renderError(err.message); //Error message gets rendered in UI

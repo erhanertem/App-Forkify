@@ -55,6 +55,8 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
+    ...(recipe.key && { key: recipe.key }),
+    //VERY IMPORTANT! recipe.key would shortcircuit if key field does not exist in the recipe. If it exists, then key:recipe.key assigment is executed with destructuring from its object state
   };
 };
 
@@ -193,9 +195,11 @@ export const uploadRecipe = async function (newRecipe) {
 
     //-->Create AJAX request to upload to online-API
     const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
-    // console.log(data); //Note: We received response from online-API with the approved recipe data alomng with additional information such as timestamp yada yada...
+    console.log(data); //Note: We received response from online-API with the approved recipe data alomng with additional information such as timestamp yada yada...
     //-->Create the state recipe from the data returned by the sendJSON AJAX response and transform into proper object customized for the app.
     state.recipe = createRecipeObject(data);
+    //-->Auto-bookmark your own recipe
+    addBookmark(state.recipe);
   } catch (err) {
     throw err; //Dialed error here gets ditched to controlAddRecipe @ controller.js
   }

@@ -2,6 +2,8 @@ import View from './View.js';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
+  _successMessage = 'Recipe was succesfully saved to server and bookmarked.'; //add a custom success message relevant to UI
+
   _windowElement = document.querySelector('.add-recipe-window');
   _overlayElement = document.querySelector('.overlay');
   _openModalBtn = document.querySelector('.nav__btn--add-recipe');
@@ -47,8 +49,6 @@ class AddRecipeView extends View {
       handler(dataArr); //is the newRecipe variable in controller.controlAddRecipe function
     });
   }
-
-  _generateMarkup() {}
 }
 
 export default new AddRecipeView();
