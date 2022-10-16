@@ -8,6 +8,35 @@ const timeout = function (s) {
   });
 };
 
+export const AJAX = async function (url, uploadData = undefined) {
+  try {
+    const response = await Promise.race([
+      uploadData
+        ? fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(uploadData),
+          })
+        : fetch(url), //If uploadData is defined, use fetch POST method else just use fetch get method.
+      timeout(TIMEOUT_SEC),
+    ]);
+    const data = await response.json();
+
+    //->Serverside fetch err check
+    if (!response.ok) throw new Error(`${data.message} (${response.status})`);
+    // console.log(response, data, data.data);};
+
+    //->Return the data if no err
+    return data;
+  } catch (err) {
+    // console.log(err);
+    throw err; //shoots to model.loadRecipe.catch err block
+  }
+};
+
+/*
 export const getJSON = async function (url) {
   try {
     const response = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]); //race two promises either url fetches in 10 seconds or timeout throws a reject promise
@@ -50,3 +79,4 @@ export const sendJSON = async function (url, uploadData) {
     throw err; //shoots to model.loadRecipe.catch err block
   }
 };
+*/

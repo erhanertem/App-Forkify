@@ -1,5 +1,6 @@
 import { API_URL, RESULTS_PER_PAGE, API_KEY } from './config.js';
-import { getJSON, sendJSON } from './helpers.js';
+// import { getJSON, sendJSON } from './helpers.js';
+import { AJAX } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -63,7 +64,7 @@ const createRecipeObject = function (data) {
 export const loadRecipe = async function (id) {
   try {
     //-->Load recipe data
-    const data = await getJSON(`${API_URL}${id}`); //we await data promise
+    const data = await AJAX(`${API_URL}${id}`); //we await data promise
 
     //-->Lets create our own version of the recipe to be used in the app under the *STATE* object
     state.recipe = createRecipeObject(data);
@@ -102,7 +103,7 @@ export const loadSearchResults = async function (queryString) {
     state.search.query.push(queryString); //BUG: (Pending) store the query IF GETJSON TESTS SUCCESSFULL!!!!
 
     //Note: Per instructions as outlined @ forkify-api.herokuapp.com for search operations
-    const data = await getJSON(`${API_URL}?search=${queryString}`);
+    const data = await AJAX(`${API_URL}?search=${queryString}`);
     // console.log(data);
     console.log('Searched querry keywords:', state.search.query);
 
@@ -194,7 +195,7 @@ export const uploadRecipe = async function (newRecipe) {
     // console.log(recipe);
 
     //-->Create AJAX request to upload to online-API
-    const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
     console.log(data); //Note: We received response from online-API with the approved recipe data alomng with additional information such as timestamp yada yada...
     //-->Create the state recipe from the data returned by the sendJSON AJAX response and transform into proper object customized for the app.
     state.recipe = createRecipeObject(data);
