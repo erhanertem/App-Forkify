@@ -1,5 +1,5 @@
-import { API_URL, RESULTS_PER_PAGE } from './config.js';
-import { getJSON } from './helpers.js';
+import { API_URL, RESULTS_PER_PAGE, API_KEY } from './config.js';
+import { getJSON, sendJSON } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -156,21 +156,25 @@ export const uploadRecipe = async function (newRecipe) {
 
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-    // console.log(ingredients);
+    // console.log('+', ingredients);
     // console.log('++', newRecipe);
-    const data = Object.fromEntries(newRecipe);
-    // console.log('+++', data);
+    const recipeData = Object.fromEntries(newRecipe);
+    // console.log('+++', recipeData);
 
     const recipe = {
-      title: data.title,
-      source_url: data.sourceUrl,
-      image_url: data.image,
-      publisher: data.publisher,
-      cooking_time: +data.cookingTime,
-      servings: +data.servings,
+      title: recipeData.title,
+      source_url: recipeData.sourceUrl,
+      image_url: recipeData.image,
+      publisher: recipeData.publisher,
+      cooking_time: +recipeData.cookingTime,
+      servings: +recipeData.servings,
       ingredients: ingredients,
     };
     // console.log(recipe);
+
+    //Create AJAX request to upload new recipe to online-API
+    const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    // console.log(data);
   } catch (err) {
     throw err; //Dialed error here gets ditched to controlAddRecipe @ controller.js
   }
