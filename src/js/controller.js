@@ -130,6 +130,9 @@ const controlStashedBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
   // console.log(newRecipe);
   try {
+    //-->Start loading spinner inside the recipeContainer
+    addRecipeView.renderSpinner();
+
     //-->Upload the new recipe data
     await model.uploadRecipe(newRecipe);
     // console.log('🥽', model.state.recipe);
