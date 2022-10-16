@@ -43,6 +43,7 @@ export const deleteBookmark = function (id) {
   persistBookmarks();
 };
 
+//Shared by uploadRecipe & loadRecipe
 const createRecipeObject = function (data) {
   const { recipe } = data.data; // let recipe = data.data.recipe;
   return {
@@ -156,6 +157,7 @@ export const uploadRecipe = async function (newRecipe) {
     // const ingredients = Object.entries(newRecipe).filter(
     //   entry => entry[0].startsWith('ingredient') && entry[1] !== ''
     // ); //filter out data that its key pair starts with ingredient and value pair is not empty
+    //-->Get a hold of the ingredient inputs, make sure they comply the required input standards
     const ingredients = newRecipe
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       //filter out data that its key pair starts with ingredient and value pair is not empty
@@ -173,9 +175,11 @@ export const uploadRecipe = async function (newRecipe) {
       });
     // console.log('+', ingredients);
     // console.log('++', newRecipe);
+    //-->Construe an object from entry array with key/value pairs
     const recipeData = Object.fromEntries(newRecipe);
     // console.log('+++', recipeData);
 
+    //-->From the provided object construct prep the recipe for final submission to online-API
     const recipe = {
       title: recipeData.title,
       source_url: recipeData.sourceUrl,
@@ -187,9 +191,11 @@ export const uploadRecipe = async function (newRecipe) {
     };
     // console.log(recipe);
 
-    //Create AJAX request to upload new recipe to online-API
+    //-->Create AJAX request to upload to online-API
     const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
-    // console.log(data);
+    // console.log(data); //Note: We received response from online-API with the approved recipe data alomng with additional information such as timestamp yada yada...
+    //-->Create the state recipe from the data returned by the sendJSON AJAX response and transform into proper object customized for the app.
+    state.recipe = createRecipeObject(data);
   } catch (err) {
     throw err; //Dialed error here gets ditched to controlAddRecipe @ controller.js
   }
