@@ -32,9 +32,9 @@ TODO List:
 
 #### Link to Project &rarr; [Forkify-App](https://forkify-app-erhan-ertem.netlify.app)
 
-<!-- <img src="./screenshot-410x400.gif" width="300" title ="project screen shot"> -->
+<!-- <img src="./screenshot.gif" width="300" title ="project screen shot"> -->
 
-![Screenshot](screenshot-410x400.gif)
+![Screenshot](screenshot.gif)
 
 ---
 
