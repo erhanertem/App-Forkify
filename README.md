@@ -32,6 +32,10 @@ TODO List:
 
 #### Link to Project &rarr; [Forkify-App](https://forkify-app-erhan-ertem.netlify.app)
 
+<!-- <img src="./screenshot-410x400.gif" width="300" title ="project screen shot"> -->
+
+![Screenshot](screenshot-410x400.gif)
+
 ---
 
 ![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
