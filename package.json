@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "Recipe Application",
   "browserslist": "> 1%, last 2 versions, not dead, not ie 11",
-  "targets": {
-    "main": false
-  },
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "repository": {
     "type": "git",
