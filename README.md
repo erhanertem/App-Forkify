@@ -45,10 +45,10 @@ TODO List:
 | npm i --save-dev parcel                   | https://parceljs.org/getting-started/webapp/                         | Parcel is a zero configuration build tool for the web.    |
 | <strike>npm i regenerator-runtime<strike> | <strike> https://www.npmjs.com/package/regenerator-runtime/ <strike> | <strike> Polyfill ES6 features - Async functions <strike> |
 | npm i core-js                             | https://www.npmjs.com/package/core-js                                | Includes polyfills for ECMAScript up to 2023              |
-| npm i fractional                          | https://www.npmjs.com/package/fractional                             | Fraction arithmetic library for JS                        |
-| npm i fracty                              | https://www.npmjs.com/package/fracty                                 | Fraction arithmetic library for JS \*                     |
+| npm i fracty                              | https://www.npmjs.com/package/fracty                                 | Fraction arithmetic library for JS                        |
+| npm i fractional                          | https://www.npmjs.com/package/fractional                             | Fraction arithmetic library for JS \*                     |
 
-\* Alternate to fractional
+\* Alternate to fracty
 
 | API Name       | API Documentation Link               |
 | -------------- | ------------------------------------ |

@@ -4,7 +4,8 @@ import icons from 'url:../../img/icons.svg'; //NOTE: Parcel 2 requires url: for 
 //->Establish link to external library
 // import Fraction from 'fractional';
 // console.log(Fraction); //Fraction includes franction function inside Fraction.
-import { Fraction } from 'fractional'; // We take out Fraction inside fraction via destructuring in-place.
+// import { Fraction } from 'fractional'; // We take out Fraction inside fraction via destructuring in-place.
+import fracty from 'fracty'; // An alternate fraction library that works with netlify.
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -154,7 +155,7 @@ class RecipeView extends View {
               </svg>
               <div class="recipe__quantity">${
                 ingredient.quantity
-                  ? new Fraction(ingredient.quantity.toFixed(1)).toString()
+                  ? fracty(ingredient.quantity).toString()
                   : ''
               }</div>
               <div class="recipe__description">
@@ -166,6 +167,26 @@ class RecipeView extends View {
          </li>
          `;
   }
+  // _generateMarkupIngredient(ingredient) {
+  //   return `
+  //        <li class="recipe__ingredient">
+  //             <svg class="recipe__icon">
+  //               <use href="${icons}#icon-check"></use>
+  //             </svg>
+  //             <div class="recipe__quantity">${
+  //               ingredient.quantity
+  //                 ? new Fraction(ingredient.quantity.toFixed(1)).toString()
+  //                 : ''
+  //             }</div>
+  //             <div class="recipe__description">
+  //               <span class="recipe__unit">${
+  //                 ingredient.unit ? ingredient.unit : ''
+  //               }</span>
+  //               ${ingredient.description ? ingredient.description : ''}
+  //             </div>
+  //        </li>
+  //        `;
+  // }
 }
 
 export default new RecipeView();
