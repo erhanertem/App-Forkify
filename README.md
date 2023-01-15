@@ -42,7 +42,8 @@ TODO List:
 ![JSON](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-#### Installed NPM packages and utilized APIs:
+<details>
+<summary>Installed NPM packages and utilized APIs:</summary>
 
 | Package command                           | Package link                                                         | Description                                               |
 | ----------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
@@ -57,5 +58,7 @@ TODO List:
 | API Name       | API Documentation Link               |
 | -------------- | ------------------------------------ |
 | Forkify API v2 | https://forkify-api.herokuapp.com/v2 |
+
+</details>
 
 &emsp;
