@@ -30,35 +30,12 @@ TODO List:
 
 &emsp;
 
-#### Link to Project &rarr; [Forkify-App](https://forkify-app-erhan-ertem.netlify.app)
+###### ⚠️This project functionality is dependant on an online API
 
-<!-- <img src="./screenshot.gif" width="300" title ="project screen shot"> -->
+#### [Forkify-App](https://forkify-app-erhan-ertem.netlify.app)
 
-![Screenshot](screenshot.gif)
+<img src="./screenshot.webp" width="500px"/>
 
 ---
 
-![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![JSON](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-
-<details>
-<summary>Installed NPM packages and utilized APIs:</summary>
-
-| Package command                           | Package link                                                         | Description                                               |
-| ----------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
-| npm i --save-dev parcel                   | https://parceljs.org/getting-started/webapp/                         | Parcel is a zero configuration build tool for the web.    |
-| <strike>npm i regenerator-runtime<strike> | <strike> https://www.npmjs.com/package/regenerator-runtime/ <strike> | <strike> Polyfill ES6 features - Async functions <strike> |
-| npm i core-js                             | https://www.npmjs.com/package/core-js                                | Includes polyfills for ECMAScript up to 2023              |
-| npm i fracty                              | https://www.npmjs.com/package/fracty                                 | Fraction arithmetic library for JS                        |
-| npm i fractional                          | https://www.npmjs.com/package/fractional                             | Fraction arithmetic library for JS \*                     |
-
-\* Alternate to fracty
-
-| API Name       | API Documentation Link               |
-| -------------- | ------------------------------------ |
-| Forkify API v2 | https://forkify-api.herokuapp.com/v2 |
-
-</details>
-
-&emsp;
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=square&logo=css3&logoColor=white) ![JS](https://img.shields.io/badge/JavaScript-323330?style=square&logo=javascript&logoColor=F7DF1E)
